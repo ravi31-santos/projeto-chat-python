@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumière Beauty — Maquiagem Moderna</title>
+  <meta name="description" content="Lumière Beauty — Maquiagem moderna, elegante e consciente. Novas tendências, produtos e dicas de beleza." />
+
+  <!-- Tipografia moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --surface: rgba(0, 0, 0, 0);
+      --muted-surface: rgba(230, 152, 219, 0.932);
+      --text: #000000;
+      --muted: #b8b9c0;
+      --primary: #f49ac1; /* rosé */
+      --primary-2: #b38fff; /* lavanda */
+      --accent: #67e8f9; /* aqua suave */
+      --radius-2xl: 24px;
+      --shadow: 0 10px 30px rgba(250, 250, 250, 0.74);
+      --glass: blur(14px) saturate(110%);
+      --container: min(1120px, 92vw);
+    }
+
+    *{ box-sizing: border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+      background: radial-gradient(1400px 600px at 20% -10%, rgba(243, 174, 206, 0.12), transparent 50%),
+                  radial-gradient(1400px 700px at 120% 10%, rgba(179, 143, 255, 0.10), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    /* ===== Navegação ===== */
+    .nav{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter: var(--glass);
+      background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav .wrap{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0; width:var(--container); margin:0 auto;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .logo{
+      width:36px; height:36px; border-radius:14px; display:grid; place-items:center;
+      background: conic-gradient(from 160deg at 50% 50%, var(--primary), var(--primary-2), var(--accent), var(--primary));
+      box-shadow: var(--shadow);
+    }
+    .brand span{ font-family: Syne, Inter, sans-serif; font-weight:800; letter-spacing:.5px; }
+    .brand small{ color: var(--muted); font-weight:500; }
+    .links{ display:flex; gap:18px; align-items:center; }
+    .pill{
+      padding:10px 16px; border-radius:999px; background: var(--surface); border:1px solid rgba(255,255,255,0.10);
+      display:inline-flex; align-items:center; gap:10px; transition: transform .15s ease, background .2s ease; text-decoration:none; color:var(--text);
+    }
+    .pill:hover{ transform: translateY(-1px); background: var(--muted-surface); }
+
+    /* ===== Header / Hero ===== */
+    header{
+      width:var(--container); margin:36px auto 24px; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;
+    }
+    header h1{ font-family: Syne, Inter, sans-serif; font-size: clamp(2rem, 4vw, 3.6rem); line-height:1.1; margin:0 0 14px; }
+    header p{ color: var(--muted); font-size: clamp(1rem, 1.25vw, 1.1rem); }
+    .cta-row{ display:flex; gap:12px; margin-top:20px; flex-wrap: wrap; }
+    .btn{
+      border:none; cursor:pointer; font-weight:700; text-decoration:none; color:#fff;
+      padding:14px 18px; border-radius:14px; background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 20px rgba(243, 174, 206, 0.25), 0 8px 18px rgba(179,143,255,.18);
+      transition: transform .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px) scale(1.01); }
+    .btn.ghost{ color: var(--text); background: var(--surface); border:1px solid rgba(255,255,255,0.12); box-shadow:none; }
+
+    .hero-card{
+      position:relative; overflow:hidden; border-radius: var(--radius-2xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10); min-height:420px;
+    }
+    .hero-img{ position:absolute; inset:0; background-position:center; background-size:cover; }
+    .hero-gradient{ position:absolute; inset:0; background: radial-gradient(100% 60% at 70% 30%, rgba(243,174,206,.18), transparent 40%),
+                                   radial-gradient(80% 50% at 20% 70%, rgba(179,143,255,.18), transparent 45%),
+                                   linear-gradient(180deg, rgba(0,0,0,.1), rgba(255,255,255,0.55)); z-index:1; }
+    .hero-badge{
+      position:absolute; left:18px; top:18px; z-index:2; padding:10px 14px; border-radius:999px;
+      background: rgba(255,255,255,0.76); border:1px solid rgba(255,255,255,.14); color:#fff; font-weight:700; display:flex; align-items:center; gap:8px;
+    }
+
+    /* ===== Marquee ===== */
+    .marquee{ overflow:hidden; width:100%; margin:8px auto 40px; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, var(--muted-surface), transparent); }
+    .track{ display:flex; gap:48px; padding:14px 0; width:max-content; animation: scroll 24s linear infinite; }
+    .track img{ height:22px; opacity:.75; filter: grayscale(100%) contrast(110%); }
+    @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+    /* ===== Grades de Produtos ===== */
+    .section{ width:var(--container); margin:56px auto; }
+    .section h2{ font-family: Syne, Inter, sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin:0 0 18px; }
+    .sub{ color: var(--muted); margin-bottom:24px; }
+
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:18px; }
+    .card{ background: var(--surface); border:1px solid rgba(255,255,255,.10); border-radius: 18px; overflow:hidden; transition: transform .2s ease, border-color .2s ease; }
+    .card:hover{ transform: translateY(-3px); border-color: rgba(255,255,255,.18); }
+    .card .media{ aspect-ratio:4/3; overflow:hidden; background:#fff; }
+    .card .media img{ width:100%; height:100%; object-fit:cover; transition: transform .35s ease; }
+    .card:hover .media img{ transform: scale(1.06); }
+    .card .content{ padding:16px; display:grid; gap:8px; }
+    .tag{ display:inline-flex; align-items:center; gap:8px; font-size:.82rem; padding:8px 12px; border-radius:999px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); color: var(--muted); font-weight:600; }
+    .title{ font-weight:800; letter-spacing:.2px; }
+    .price{ font-weight:800; }
+    .price s{ color: var(--muted); font-weight:600; margin-left:6px; }
+
+    .card.span-6{ grid-column: span 2; }
+    .card.tall .media{ aspect-ratio: 4/4.6; }
+
+    /* ===== Highlights ===== */
+    .highlights{ display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    .hl{ background: var(--surface); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:18px; display:grid; gap:8px; }
+    .hl strong{ font-family: Syne, Inter, sans-serif; font-size:1.1rem; }
+    .hl p{ color: var(--muted); margin:0; }
+
+    /* ===== Testimonials ===== */
+    .testimonials{ display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+    .t{ background: var(--muted-surface); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:18px; display:grid; gap:8px; }
+    .t .who{ display:flex; align-items:center; gap:12px; }
+    .avatar{ width:42px; height:42px; border-radius:50%; overflow:hidden; border:1px solid rgba(255,255,255,.18); }
+    .avatar img{ width:100%; height:100%; object-fit:cover; }
+
+    /* ===== Newsletter ===== */
+    .newsletter{
+      margin:54px auto; width:var(--container); background: linear-gradient(140deg, rgba(243,174,206,.22), rgba(179,143,255,.22));
+      border:1px solid rgba(255,255,255,.18); border-radius: var(--radius-2xl);
+      padding:26px; display:grid; grid-template-columns:1.2fr .8fr; gap:16px; align-items:center;
+      box-shadow: var(--shadow);
+    }
+    .newsletter form{ display:flex; gap:10px; }
+    .newsletter input{ flex:1; padding:14px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.20); background: rgba(255,255,255,.08); color: var(--text); font-weight:600; outline:none; }
+    .newsletter button{ padding:14px 18px; border-radius:12px; border:none; font-weight:800; cursor:pointer; background: #fff; }
+
+    /* ===== Footer ===== */
+    footer{ border-top:1px solid rgba(255,255,255,.10); margin-top:70px; }
+    .foot{ width:var(--container); margin:0 auto; padding:32px 0; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; }
+    .mini{ color: var(--muted); font-size:.95rem; }
+
+    /* ===== Responsividade ===== */
+    @media(max-width:980px){
+      header{ grid-template-columns:1fr; }
+      .newsletter{ grid-template-columns:1fr; }
+    }
+    @media(max-width:700px){
+      .foot{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegação -->
+  <nav class="nav">
+    <div class="wrap">
+      <a class="brand" href="#">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Ravi & Lívia <small>Beauty</small></span>
+      </a>
+      <div class="links">
+        <a class="pill" href="#novidades">Novidades</a>
+        <a class="pill" href="#best">Best-sellers</a>
+        <a class="pill" href="#sobre">Sobre</a>
+        <a class="pill" href="#contato">Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <div>
+      <h1>Maquiagem <span style="background:linear-gradient(90deg,var(--primary),var(--primary-2)); -webkit-background-clip:text; background-clip:text; color:transparent">e cosméticos</span> para sua rotina.</h1>
+      <p>Fórmulas limpas, alto desempenho e sofisticação. Descubra cores que valorizam você, com acabamento profissional e cuidado com a pele.</p>
+      <div class="cta-row">
+        <a class="btn" href="#novidades">Explorar coleção</a>
+        <a class="btn ghost" href="#sobre">Nossa filosofia</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-img" style="background-image:url('https://images.unsplash.com/photo-1609179781008-c5f1f4b8dc87?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-badge">✨ Lançamento 2025</div>
+    </div>
+  </header>
+
+  <!-- Marcas -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.kXmVjoshBmZlnUVWUyCzDgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sephora"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Vogue_logo.svg" alt="Vogue"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Allure_logo.svg" alt="Allure"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Elle_Magazine_logo.svg" alt="Elle"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Vogue_logo.svg" alt="Vogue"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Sephora_logo.svg" alt="Sephora"/>
+    </div>
+  </div>
+
+  <!-- Novidades -->
+  <section id="novidades" class="section">
+    <h2>Novidades</h2>
+    <p class="sub">Texturas inovadoras, cores intensas e conforto absoluto.</p>
+    <div class="grid">
+      <article class="card span-6 tall">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612b8e53?q=80&w=1600&auto=format&fit=crop" alt="Paleta de sombras em tons rosé e lavanda" />
+        </div>
+        <div class="content">
+          <span class="tag">Novo • Edição Limitada</span>
+          <div class="title">Paleta Prism Glow 16 cores</div>
+          <div class="price">R$ 169,90 <s>R$ 199,90</s></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1631214524730-88b8162230f9?q=80&w=1600&auto=format&fit=crop" alt="Batom nude rosado em embalagem minimalista" />
+        </div>
+        <div class="content">
+          <span class="tag">Vegano</span>
+          <div class="title">Batom Velvet Matte</div>
+          <div class="price">R$ 59,90</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop" alt="Base fluida com acabamento natural" />
+        </div>
+        <div class="content">
+          <span class="tag">12 tons</span>
+          <div class="title">Base Serum Skin-Like</div>
+          <div class="price">R$ 99,90</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div>
+      <h2>Receba nossas novidades</h2>
+      <p>Cadastre seu e-mail e seja o primeiro a saber dos lançamentos e promoções exclusivas.</p>
+    </div>
+    <form>
+      <input type="email" placeholder="Digite seu e-mail" required />
+      <button type="submit">Inscrever-se</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="foot">
+      <div class="mini">© 2025 Lumière Beauty. Todos os direitos reservados.</div>
+      <div class="mini">Feito com 💖 por Ravi & Lívia</div>
+    </div>
+  </footer>
+</body>
+</html>
